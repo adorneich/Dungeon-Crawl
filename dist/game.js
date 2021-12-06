@@ -255,8 +255,8 @@
       t[0] = this.m[5] * r - this.m[6] * a + this.m[7] * b, t[4] = -(this.m[4] * r - this.m[6] * P + this.m[7] * v), t[8] = this.m[4] * a - this.m[5] * P + this.m[7] * D, t[12] = -(this.m[4] * b - this.m[5] * v + this.m[6] * D), t[1] = -(this.m[1] * r - this.m[2] * a + this.m[3] * b), t[5] = this.m[0] * r - this.m[2] * P + this.m[3] * v, t[9] = -(this.m[0] * a - this.m[1] * P + this.m[3] * D), t[13] = this.m[0] * b - this.m[1] * v + this.m[2] * D, t[2] = this.m[1] * V - this.m[2] * A + this.m[3] * L, t[6] = -(this.m[0] * V - this.m[2] * N + this.m[3] * Y), t[10] = this.m[0] * ie - this.m[1] * N + this.m[3] * j, t[14] = -(this.m[0] * L - this.m[1] * Y + this.m[2] * j), t[3] = -(this.m[1] * oe - this.m[2] * J + this.m[3] * ue), t[7] = this.m[0] * oe - this.m[2] * y + this.m[3] * ye, t[11] = -(this.m[0] * J - this.m[1] * y + this.m[3] * S), t[15] = this.m[0] * ue - this.m[1] * ye + this.m[2] * S;
       let T = this.m[0] * t[0] + this.m[1] * t[4] + this.m[2] * t[8] + this.m[3] * t[12];
       for (let _ = 0; _ < 4; _++)
-        for (let z = 0; z < 4; z++)
-          t[_ * 4 + z] *= 1 / T;
+        for (let z2 = 0; z2 < 4; z2++)
+          t[_ * 4 + z2] *= 1 / T;
       return le(t);
     } };
   }
@@ -862,15 +862,15 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     __name(_, "_");
     i(_, "drawTexture");
-    function z(o, f, U, R, x, E = 1) {
+    function z2(o, f, U, R, x, E = 1) {
       R = Ce(R % 360), x = Ce(x % 360), x <= R && (x += Math.PI * 2);
       let C = Math.ceil(Math.max(Math.sqrt(f + U) * 3 * (E || 1), 16)), O = (x - R) / C, H = [];
       for (let re = R; re < x; re += O)
         H.push(o.add(f * Math.cos(re), U * Math.sin(re)));
       return H.push(o.add(f * Math.cos(x), U * Math.sin(x))), H;
     }
-    __name(z, "z");
-    i(z, "getArcPts");
+    __name(z2, "z");
+    i(z2, "getArcPts");
     function X(o) {
       if (o.width === void 0 || o.height === void 0)
         throw new Error('drawRect() requires property "width" and "height".');
@@ -879,7 +879,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       let f = o.width, U = o.height, x = Ge(o.origin || pt).add(1, 1).scale(c(f, U).scale(-0.5)), E = [c(0, 0), c(f, 0), c(f, U), c(0, U)];
       if (o.radius) {
         let C = Math.min(Math.min(f, U) / 2, o.radius);
-        E = [c(C, 0), c(f - C, 0), ...z(c(f - C, C), C, C, 270, 360), c(f, C), c(f, U - C), ...z(c(f - C, U - C), C, C, 0, 90), c(f - C, U), c(C, U), ...z(c(C, U - C), C, C, 90, 180), c(0, U - C), c(0, C), ...z(c(C, C), C, C, 180, 270)];
+        E = [c(C, 0), c(f - C, 0), ...z2(c(f - C, C), C, C, 270, 360), c(f, C), c(f, U - C), ...z2(c(f - C, U - C), C, C, 0, 90), c(f - C, U), c(C, U), ...z2(c(C, U - C), C, C, 90, 180), c(0, U - C), c(0, C), ...z2(c(C, C), C, C, 180, 270)];
       }
       ae(se(ne({}, o), { offset: x, pts: E }));
     }
@@ -937,7 +937,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       var f, U;
       if (o.radiusX === void 0 || o.radiusY === void 0)
         throw new Error('drawEllipse() requires properties "radiusX" and "radiusY".');
-      o.radiusX === 0 || o.radiusY === 0 || ae(se(ne({}, o), { pts: z(c(0), o.radiusX, o.radiusY, (f = o.start) != null ? f : 0, (U = o.end) != null ? U : 360, o.resolution), radius: 0 }));
+      o.radiusX === 0 || o.radiusY === 0 || ae(se(ne({}, o), { pts: z2(c(0), o.radiusX, o.radiusY, (f = o.start) != null ? f : 0, (U = o.end) != null ? U : 360, o.resolution), radius: 0 }));
     }
     __name(F, "F");
     i(F, "drawEllipse");
@@ -1196,11 +1196,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     __name(_, "_");
     i(_, "screenshot");
-    function z(w) {
+    function z2(w) {
       return w && (r.canvas.style.cursor = w), r.canvas.style.cursor;
     }
-    __name(z, "z");
-    i(z, "cursor");
+    __name(z2, "z");
+    i(z2, "cursor");
     function X(w = true) {
       w ? Un(r.canvas) : gn();
     }
@@ -1233,7 +1233,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       cancelAnimationFrame(r.loopID), r.stopped = true;
     }
     __name(q, "q");
-    return i(q, "quit"), { gl: v, mousePos: V, mouseDeltaPos: A, isKeyDown: J, isKeyPressed: j, isKeyPressedRepeat: oe, isKeyReleased: ue, isMouseDown: N, isMousePressed: L, isMouseReleased: Y, isMouseMoved: ie, charInputted: y, cursor: z, dt: ye, time: S, fps: T, screenshot: _, run: k2, quit: q, isFocused: () => document.activeElement === r.canvas, focus: () => r.canvas.focus(), canvas: r.canvas, isTouch: r.isTouch, scale: r.scale, fullscreen: X, isFullscreen: W };
+    return i(q, "quit"), { gl: v, mousePos: V, mouseDeltaPos: A, isKeyDown: J, isKeyPressed: j, isKeyPressedRepeat: oe, isKeyReleased: ue, isMouseDown: N, isMousePressed: L, isMouseReleased: Y, isMouseMoved: ie, charInputted: y, cursor: z2, dt: ye, time: S, fps: T, screenshot: _, run: k2, quit: q, isFocused: () => document.activeElement === r.canvas, focus: () => r.canvas.focus(), canvas: r.canvas, isTouch: r.isTouch, scale: r.scale, fullscreen: X, isFullscreen: W };
   }
   __name(gr, "gr");
   i(gr, "appInit");
@@ -1358,12 +1358,12 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     __name(v, "v");
     i(v, "loadRoot");
-    function D(S, T, _, z, X = {}) {
+    function D(S, T, _, z2, X = {}) {
       return b(new Promise((W, k2) => {
         let q = Rr(T) ? T : a.loadRoot + T;
         $t(q).then(($) => {
           var ae;
-          let F = e.makeFont(e.makeTex($, X), _, z, (ae = X.chars) != null ? ae : qt);
+          let F = e.makeFont(e.makeTex($, X), _, z2, (ae = X.chars) != null ? ae : qt);
           S && (a.fonts[S] = F), W(F);
         }).catch(k2);
       }));
@@ -1394,47 +1394,47 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     __name(N, "N");
     i(N, "getShader");
-    function Y(S = 1, T = 1, _ = 0, z = 0, X = 1, W = 1) {
+    function Y(S = 1, T = 1, _ = 0, z2 = 0, X = 1, W = 1) {
       let k2 = [], q = X / S, $ = W / T;
       for (let F = 0; F < T; F++)
         for (let ae = 0; ae < S; ae++)
-          k2.push(de(_ + ae * q, z + F * $, q, $));
+          k2.push(de(_ + ae * q, z2 + F * $, q, $));
       return k2;
     }
     __name(Y, "Y");
     i(Y, "slice");
     function ie(S, T) {
       return b(typeof T == "string" ? fetch(v() + T).then((_) => _.json()).then((_) => ie(S, _)) : j(null, S).then((_) => {
-        let z = {}, X = _.tex.width, W = _.tex.height;
+        let z2 = {}, X = _.tex.width, W = _.tex.height;
         for (let k2 in T) {
           let q = T[k2], $ = { tex: _.tex, frames: Y(q.sliceX, q.sliceY, q.x / X, q.y / W, q.width / X, q.height / W), anims: q.anims };
-          a.sprites[k2] = $, z[k2] = $;
+          a.sprites[k2] = $, z2[k2] = $;
         }
-        return z;
+        return z2;
       }));
     }
     __name(ie, "ie");
     i(ie, "loadSpriteAtlas");
     function j(S, T, _ = { sliceX: 1, sliceY: 1, anims: {} }) {
-      function z(X, W, k2 = { sliceX: 1, sliceY: 1, anims: {} }) {
+      function z2(X, W, k2 = { sliceX: 1, sliceY: 1, anims: {} }) {
         let q = e.makeTex(W, k2), $ = Y(k2.sliceX || 1, k2.sliceY || 1), F = { tex: q, frames: $, anims: k2.anims || {} };
         return X && (a.sprites[X] = F), F;
       }
-      __name(z, "z");
-      return i(z, "loadRawSprite"), b(new Promise((X, W) => {
+      __name(z2, "z");
+      return i(z2, "loadRawSprite"), b(new Promise((X, W) => {
         if (!T)
           return W(`expected sprite src for "${S}"`);
         if (typeof T == "string") {
           let k2 = Rr(T) ? T : a.loadRoot + T;
-          $t(k2).then((q) => X(z(S, q, _))).catch(W);
+          $t(k2).then((q) => X(z2(S, q, _))).catch(W);
         } else
-          X(z(S, T, _));
+          X(z2(S, T, _));
       }));
     }
     __name(j, "j");
     i(j, "loadSprite");
     function oe(S, T) {
-      return b(new Promise((_, z) => {
+      return b(new Promise((_, z2) => {
         fetch(v() + T).then((X) => X.json()).then((X) => er(this, null, function* () {
           let W = yield Promise.all(X.frames.map($t)), k2 = document.createElement("canvas");
           k2.width = X.width, k2.height = X.height * X.frames.length;
@@ -1442,13 +1442,13 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
           return W.forEach(($, F) => {
             q.drawImage($, 0, F * X.height);
           }), j(S, k2, { sliceY: X.frames.length, anims: X.anims });
-        })).then(_).catch(z);
+        })).then(_).catch(z2);
       }));
     }
     __name(oe, "oe");
     i(oe, "loadPedit");
     function J(S, T, _) {
-      return b(new Promise((z, X) => {
+      return b(new Promise((z2, X) => {
         let W = v() + _;
         j(S, T).then((k2) => {
           fetch(W).then((q) => q.json()).then((q) => {
@@ -1456,14 +1456,14 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
             k2.frames = q.frames.map((F) => de(F.frame.x / $.w, F.frame.y / $.h, F.frame.w / $.w, F.frame.h / $.h));
             for (let F of q.meta.frameTags)
               F.from === F.to ? k2.anims[F.name] = F.from : k2.anims[F.name] = { from: F.from, to: F.to, speed: 10, loop: true };
-            z(k2);
+            z2(k2);
           }).catch(X);
         }).catch(X);
       }));
     }
     __name(J, "J");
     i(J, "loadAseprite");
-    function ue(S, T, _, z = false) {
+    function ue(S, T, _, z2 = false) {
       function X(W, k2, q) {
         let $ = e.makeShader(k2, q);
         return W && (a.shaders[W] = $), $;
@@ -1480,7 +1480,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
           }).catch(k2) : new Promise((F) => F(null));
         }
         __name(q, "q");
-        if (i(q, "resolveUrl"), z)
+        if (i(q, "resolveUrl"), z2)
           Promise.all([q(T), q(_)]).then(([$, F]) => {
             W(X(S, $, F));
           }).catch(k2);
@@ -1496,7 +1496,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     i(ue, "loadShader");
     function y(S, T) {
       let _ = a.loadRoot + T;
-      return b(new Promise((z, X) => {
+      return b(new Promise((z2, X) => {
         if (!T)
           return X(`expected sound src for "${S}"`);
         typeof T == "string" && fetch(_).then((W) => {
@@ -1507,7 +1507,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
           t.ctx.decodeAudioData(W, k2, q);
         })).then((W) => {
           let k2 = { buf: W };
-          S && (a.sounds[S] = k2), z(k2);
+          S && (a.sounds[S] = k2), z2(k2);
         }).catch(X);
       }));
     }
@@ -1667,11 +1667,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     __name(_, "_");
     i(_, "camRot");
-    function z(n = 12) {
+    function z2(n = 12) {
       y.cam.shake = n;
     }
-    __name(z, "z");
-    i(z, "shake");
+    __name(z2, "z");
+    i(z2, "shake");
     function X(n) {
       return y.camMatrix.multVec2(n);
     }
@@ -2655,7 +2655,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     __name(Yt, "Yt");
     i(Yt, "record");
-    let Xe = { loadRoot: v.loadRoot, loadSprite: v.loadSprite, loadSpriteAtlas: v.loadSpriteAtlas, loadSound: v.loadSound, loadFont: v.loadFont, loadShader: v.loadShader, loadAseprite: v.loadAseprite, loadPedit: v.loadPedit, loadBean: v.loadBean, load: v.load, width: b, height: P, center: vt, dt: L, time: r.time, screenshot: r.screenshot, record: Yt, focused: r.isFocused, isFocused: r.isFocused, focus: r.focus, cursor: r.cursor, regCursor: Ut, fullscreen: r.fullscreen, isFullscreen: r.isFullscreen, onLoad: _e, ready: _e, isTouch: () => r.isTouch, layers: ye, camPos: S, camScale: T, camRot: _, shake: z, toScreen: X, toWorld: W, gravity: et, add: F, readd: ae, destroy: Me, destroyAll: Ve, get: be, every: me, revery: Ye, pos: ge, scale: tt, rotate: gt, color: Ze, opacity: Je, origin: wt, layer: xt, area: Lr, sprite: Fr, text: Or, rect: _r, circle: Wr, uvquad: Xr, outline: qr, body: zr, shader: Zr, timer: $r, solid: Jr, fixed: Hr, stay: Nr, health: jr, lifespan: Qr, z: rt, move: we, cleanup: Ue, follow: nt, state: Kr, on: w, onUpdate: G, onDraw: De, onCollide: Re, onClick: Ee, onHover: ce, action: G, render: De, collides: Re, clicks: Ee, hovers: ce, onKeyDown: o, onKeyPress: f, onKeyPressRepeat: U, onKeyRelease: R, onMouseDown: x, onMousePress: E, onMouseRelease: C, onMouseMove: O, onCharInput: H, onTouchStart: re, onTouchMove: Z, onTouchEnd: ee, keyDown: o, keyPress: f, keyPressRep: U, keyRelease: R, mouseDown: x, mouseClick: E, mouseRelease: C, mouseMove: O, charInput: H, touchStart: re, touchMove: Z, touchEnd: ee, mousePos: Y, mouseWorldPos: ie, mouseDeltaPos: r.mouseDeltaPos, isKeyDown: r.isKeyDown, isKeyPressed: r.isKeyPressed, isKeyPressedRepeat: r.isKeyPressedRepeat, isKeyReleased: r.isKeyReleased, isMouseDown: r.isMouseDown, isMousePressed: r.isMousePressed, isMouseReleased: r.isMouseReleased, isMouseMoved: r.isMouseMoved, keyIsDown: r.isKeyDown, keyIsPressed: r.isKeyPressed, keyIsPressedRep: r.isKeyPressedRepeat, keyIsReleased: r.isKeyReleased, mouseIsDown: r.isMouseDown, mouseIsClicked: r.isMousePressed, mouseIsReleased: r.isMouseReleased, mouseIsMoved: r.isMouseMoved, loop: bt, wait: xe, play: N, volume: t.volume, burp: t.burp, audioCtx: t.ctx, rng: Dt, rand: je, randi: Rt, randSeed: ar, vec2: c, dir: ot, rgb: I, hsl2rgb: ir, quad: de, choose: cr, chance: ur, lerp: Ne, map: Oe, mapc: rr, wave: Pt, deg2rad: Ce, rad2deg: Tt, testAreaRect: dt, testAreaLine: kt, testAreaCircle: It, testAreaPolygon: Lt, testAreaPoint: ht, testAreaArea: Ft, testLineLine: Se, testRectRect: At, testRectLine: at, testRectPoint: Be, testPolygonPoint: $e, testLinePolygon: Qe, testPolygonPolygon: lt, testCircleCircle: Vt, testCirclePoint: ct, testRectPolygon: ut, drawSprite: j, drawText: oe, drawRect: a.drawRect, drawLine: a.drawLine, drawLines: a.drawLines, drawTriangle: a.drawTriangle, drawCircle: a.drawCircle, drawEllipse: a.drawEllipse, drawUVQuad: a.drawUVQuad, drawPolygon: a.drawPolygon, pushTransform: a.pushTransform, popTransform: a.popTransform, pushTranslate: a.pushTranslate, pushRotate: a.pushRotateZ, pushScale: a.pushScale, debug: Q, scene: en, go: tn, addLevel: sn, getData: rn, setData: Gt, plug: Et, ASCII_CHARS: qt, CP437_CHARS: Dr, LEFT: c(-1, 0), RIGHT: c(1, 0), UP: c(0, -1), DOWN: c(0, 1), RED: I(255, 0, 0), GREEN: I(0, 255, 0), BLUE: I(0, 0, 255), YELLOW: I(255, 255, 0), MAGENTA: I(255, 0, 255), CYAN: I(0, 255, 255), WHITE: I(255, 255, 255), BLACK: I(0, 0, 0), canvas: r.canvas };
+    let Xe = { loadRoot: v.loadRoot, loadSprite: v.loadSprite, loadSpriteAtlas: v.loadSpriteAtlas, loadSound: v.loadSound, loadFont: v.loadFont, loadShader: v.loadShader, loadAseprite: v.loadAseprite, loadPedit: v.loadPedit, loadBean: v.loadBean, load: v.load, width: b, height: P, center: vt, dt: L, time: r.time, screenshot: r.screenshot, record: Yt, focused: r.isFocused, isFocused: r.isFocused, focus: r.focus, cursor: r.cursor, regCursor: Ut, fullscreen: r.fullscreen, isFullscreen: r.isFullscreen, onLoad: _e, ready: _e, isTouch: () => r.isTouch, layers: ye, camPos: S, camScale: T, camRot: _, shake: z2, toScreen: X, toWorld: W, gravity: et, add: F, readd: ae, destroy: Me, destroyAll: Ve, get: be, every: me, revery: Ye, pos: ge, scale: tt, rotate: gt, color: Ze, opacity: Je, origin: wt, layer: xt, area: Lr, sprite: Fr, text: Or, rect: _r, circle: Wr, uvquad: Xr, outline: qr, body: zr, shader: Zr, timer: $r, solid: Jr, fixed: Hr, stay: Nr, health: jr, lifespan: Qr, z: rt, move: we, cleanup: Ue, follow: nt, state: Kr, on: w, onUpdate: G, onDraw: De, onCollide: Re, onClick: Ee, onHover: ce, action: G, render: De, collides: Re, clicks: Ee, hovers: ce, onKeyDown: o, onKeyPress: f, onKeyPressRepeat: U, onKeyRelease: R, onMouseDown: x, onMousePress: E, onMouseRelease: C, onMouseMove: O, onCharInput: H, onTouchStart: re, onTouchMove: Z, onTouchEnd: ee, keyDown: o, keyPress: f, keyPressRep: U, keyRelease: R, mouseDown: x, mouseClick: E, mouseRelease: C, mouseMove: O, charInput: H, touchStart: re, touchMove: Z, touchEnd: ee, mousePos: Y, mouseWorldPos: ie, mouseDeltaPos: r.mouseDeltaPos, isKeyDown: r.isKeyDown, isKeyPressed: r.isKeyPressed, isKeyPressedRepeat: r.isKeyPressedRepeat, isKeyReleased: r.isKeyReleased, isMouseDown: r.isMouseDown, isMousePressed: r.isMousePressed, isMouseReleased: r.isMouseReleased, isMouseMoved: r.isMouseMoved, keyIsDown: r.isKeyDown, keyIsPressed: r.isKeyPressed, keyIsPressedRep: r.isKeyPressedRepeat, keyIsReleased: r.isKeyReleased, mouseIsDown: r.isMouseDown, mouseIsClicked: r.isMousePressed, mouseIsReleased: r.isMouseReleased, mouseIsMoved: r.isMouseMoved, loop: bt, wait: xe, play: N, volume: t.volume, burp: t.burp, audioCtx: t.ctx, rng: Dt, rand: je, randi: Rt, randSeed: ar, vec2: c, dir: ot, rgb: I, hsl2rgb: ir, quad: de, choose: cr, chance: ur, lerp: Ne, map: Oe, mapc: rr, wave: Pt, deg2rad: Ce, rad2deg: Tt, testAreaRect: dt, testAreaLine: kt, testAreaCircle: It, testAreaPolygon: Lt, testAreaPoint: ht, testAreaArea: Ft, testLineLine: Se, testRectRect: At, testRectLine: at, testRectPoint: Be, testPolygonPoint: $e, testLinePolygon: Qe, testPolygonPolygon: lt, testCircleCircle: Vt, testCirclePoint: ct, testRectPolygon: ut, drawSprite: j, drawText: oe, drawRect: a.drawRect, drawLine: a.drawLine, drawLines: a.drawLines, drawTriangle: a.drawTriangle, drawCircle: a.drawCircle, drawEllipse: a.drawEllipse, drawUVQuad: a.drawUVQuad, drawPolygon: a.drawPolygon, pushTransform: a.pushTransform, popTransform: a.popTransform, pushTranslate: a.pushTranslate, pushRotate: a.pushRotateZ, pushScale: a.pushScale, debug: Q, scene: en, go: tn, addLevel: sn, getData: rn, setData: Gt, plug: Et, ASCII_CHARS: qt, CP437_CHARS: Dr, LEFT: c(-1, 0), RIGHT: c(1, 0), UP: c(0, -1), DOWN: c(0, 1), RED: I(255, 0, 0), GREEN: I(0, 255, 0), BLUE: I(0, 0, 255), YELLOW: I(255, 255, 0), MAGENTA: I(255, 0, 255), CYAN: I(0, 255, 255), WHITE: I(255, 255, 255), BLACK: I(0, 0, 0), canvas: r.canvas };
     if (Et(Ir), e.plugins && e.plugins.forEach(Et), e.global !== false)
       for (let n in Xe)
         window[n] = Xe[n];
@@ -2767,9 +2767,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   // code/maps/testmap.js
   var testmap = [
     "                                   ",
-    " \u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2510 ",
-    " \u2502*************\u2502 \u2502******\u2502 \u2502******\u2502 ",
-    " \u2502*************\u2514\u2500\u2518******\u2514\u2500\u2518******\u2502 ",
+    " \u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510          \u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2510 ",
+    " \u2502*************\u2502          \u2502******\u2502 ",
+    " \u2502*************\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518******\u2502 ",
     " \u2502*******************************\u2502 ",
     " \u2502*************\u250C\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510******\u2502 ",
     " \u2502*************\u2502          \u2502******\u2502 ",
@@ -2781,6 +2781,364 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     " \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518          \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2518 ",
     "                                   "
   ];
+
+  // code/ui.js
+  var hearts = [];
+  var enduranceBars = [];
+  var enduranceFrames = [];
+  var UI_POSITIONS = {
+    HEARTS: [2, 2],
+    ENDURANCE_BAR: [2, 16]
+  };
+  var UI_SCALE = 0.75;
+  var uiHandler = {
+    updateHearts: () => {
+      let tempHP = player.hp();
+      let modifier = player.modifier;
+      for (let i2 = 0; i2 < hearts.length; i2++) {
+        let amt = Math.min(tempHP, 4);
+        if (tempHP > 0 && tempHP <= 4) {
+          hearts[i2].play(MODS.name(modifier) + amt);
+        } else {
+          hearts[i2].stop();
+          hearts[i2].frame = modifier * 9 + (8 - 2 * amt);
+        }
+        tempHP -= amt;
+      }
+    },
+    updateEndurance: () => {
+      let tempEndurance = player.endurance;
+      for (let i2 = 0; i2 < enduranceBars.length; i2++) {
+        let amt = Math.min(tempEndurance, 4);
+        enduranceBars[i2].frame = 4 - amt;
+        tempEndurance -= amt;
+      }
+    }
+  };
+  var createBarFrame = /* @__PURE__ */ __name((num, x, y, frameArray) => {
+    if (num === 1) {
+      frame = k.add([
+        sprite("bar_frame", { frame: 3 }),
+        scale(UI_SCALE),
+        layer("ui"),
+        fixed(),
+        z(2),
+        pos(x, y)
+      ]);
+      frameArray.push(frame);
+    } else {
+      for (let i2 = 0; i2 < num; i2++) {
+        frame = k.add([
+          sprite("bar_frame"),
+          scale(UI_SCALE),
+          layer("ui"),
+          fixed(),
+          z(2),
+          pos(x + 16 * UI_SCALE * i2, y)
+        ]);
+        frame.frame = 2;
+        frameArray.push(frame);
+      }
+      frameArray[0].frame = 0;
+      frameArray[frameArray.length - 1].frame = 4;
+    }
+  }, "createBarFrame");
+  var createHearts = /* @__PURE__ */ __name(() => {
+    for (let i2 = 0; i2 < playerHandler.type.hp / 4; i2++) {
+      let heart = k.add([
+        sprite("heart"),
+        scale(UI_SCALE),
+        layer("ui"),
+        fixed(),
+        pos(UI_POSITIONS.HEARTS[0] + 16 * UI_SCALE * i2, UI_POSITIONS.HEARTS[1])
+      ]);
+      heart.animSpeed = 0.2;
+      hearts.push(heart);
+    }
+  }, "createHearts");
+  var createEndurance = /* @__PURE__ */ __name(() => {
+    for (let i2 = 0; i2 < playerHandler.type.endurance / 4; i2++) {
+      let enduranceBar = k.add([
+        sprite("yellow_bar"),
+        scale(UI_SCALE),
+        layer("ui"),
+        fixed(),
+        z(1),
+        pos(UI_POSITIONS.ENDURANCE_BAR[0] + 16 * UI_SCALE * i2, UI_POSITIONS.ENDURANCE_BAR[1])
+      ]);
+      enduranceBars.push(enduranceBar);
+    }
+    createBarFrame(playerHandler.type.endurance / 4, UI_POSITIONS.ENDURANCE_BAR[0], UI_POSITIONS.ENDURANCE_BAR[1], enduranceFrames);
+  }, "createEndurance");
+  var createUI = /* @__PURE__ */ __name(() => {
+    loader.loadUI();
+    createHearts();
+    createEndurance();
+    uiHandler.updateHearts();
+    uiHandler.updateEndurance();
+  }, "createUI");
+
+  // code/player.js
+  var PLAYER_RUN_MULT = 1.5;
+  var MODS = {
+    NORMAL: 0,
+    POISONED: 1,
+    FROZEN: 2,
+    WITHERED: 3,
+    name: (mod) => {
+      if (mod === MODS.NORMAL) {
+        return "normal";
+      } else if (mod === MODS.POISONED) {
+        return "poisoned";
+      } else if (mod === MODS.FROZEN) {
+        return "frozen";
+      } else if (mod === MODS.WITHERED) {
+        return "withered";
+      }
+    }
+  };
+  var player = null;
+  var types = {
+    "Engineer": {
+      "name": "Engineer",
+      "hp": 20,
+      "speed": 80,
+      "animSpeed": 80 / 60,
+      "endurance": 12
+    },
+    "Mage": {
+      "name": "Mage",
+      "hp": 16,
+      "speed": 80,
+      "animSpeed": 80 / 60,
+      "endurance": 12
+    },
+    "Paladin": {
+      "name": "Paladin",
+      "hp": 20,
+      "speed": 60,
+      "animSpeed": 60 / 60,
+      "endurance": 12
+    },
+    "Rogue": {
+      "name": "Rogue",
+      "hp": 12,
+      "speed": 85,
+      "animSpeed": 85 / 60,
+      "endurance": 16
+    },
+    "Warrior": {
+      "name": "Warrior",
+      "hp": 24,
+      "speed": 55,
+      "animSpeed": 55 / 60,
+      "endurance": 8
+    }
+  };
+  var playerHandler = {
+    type: null,
+    endUseEndurance: null,
+    endRegenEndurance: null,
+    anim: (key, walk) => {
+      return key[0] + "_" + (walk ? "walk" : "idle");
+    },
+    setAnim: (anim) => {
+      if (player.curAnim() !== anim) {
+        player.play(anim);
+      }
+    },
+    updateAnim: (last) => {
+      if (keys.currentHoriz === null) {
+        if (keys.currentVert === null) {
+          playerHandler.setAnim(playerHandler.anim(last, false));
+        } else {
+          playerHandler.setAnim(playerHandler.anim(keys.currentVert, true));
+        }
+      } else {
+        playerHandler.setAnim(playerHandler.anim(keys.currentHoriz, true));
+      }
+    }
+  };
+  var createPlayer = /* @__PURE__ */ __name((type, pos2) => {
+    playerHandler.type = type;
+    loader.loadPlayer(type.name);
+    if (player !== null)
+      k.destroy(player);
+    player = loader.addPlayer(pos2);
+  }, "createPlayer");
+  var keys = {
+    RIGHT: ["right", "d"],
+    LEFT: ["left", "a"],
+    UP: ["up", "w"],
+    DOWN: ["down", "s"],
+    currentHoriz: null,
+    currentVert: null,
+    speedMult: 1,
+    isKeyDown: (key) => {
+      return k.isKeyDown(key[0]) || k.isKeyDown(key[1]);
+    },
+    areBothDown: (key) => {
+      return k.isKeyDown(key[0]) && k.isKeyDown(key[1]);
+    }
+  };
+  var addPlayerOpts = /* @__PURE__ */ __name((pos2) => [
+    k.sprite(playerHandler.type.name, { animSpeed: playerHandler.type.animSpeed }),
+    k.origin("center"),
+    k.layer("game"),
+    k.pos(pos2),
+    k.area(),
+    k.solid(),
+    k.z(2),
+    k.health(playerHandler.type.hp),
+    "player",
+    "killable",
+    {
+      modifier: MODS.NORMAL,
+      endurance: playerHandler.type.endurance
+    }
+  ], "addPlayerOpts");
+  var setListeners = /* @__PURE__ */ __name((gameMap) => {
+    player.onUpdate(() => {
+      k.camPos(player.pos);
+      if (playerHandler.endRegenEndurance !== null && player.endurance === playerHandler.type.endurance) {
+        playerHandler.endRegenEndurance();
+        playerHandler.endRegenEndurance = null;
+      }
+    });
+    k.onKeyPress(keys.RIGHT, () => {
+      keys.currentHoriz = keys.RIGHT;
+      playerHandler.updateAnim(keys.RIGHT);
+    });
+    k.onKeyDown(keys.RIGHT, () => {
+      if (keys.currentHoriz === keys.RIGHT) {
+        if (keys.currentVert !== null) {
+          player.move(playerHandler.type.speed * keys.speedMult / Math.sqrt(2) * (keys.areBothDown(keys.RIGHT) ? 0.5 : 1), 0);
+        } else {
+          player.move(playerHandler.type.speed * keys.speedMult * (keys.areBothDown(keys.RIGHT) ? 0.5 : 1), 0);
+        }
+      }
+    });
+    k.onKeyRelease(keys.RIGHT, () => {
+      if (keys.isKeyDown(keys.LEFT)) {
+        keys.currentHoriz = keys.LEFT;
+      } else {
+        keys.currentHoriz = null;
+      }
+      playerHandler.updateAnim(keys.RIGHT);
+    });
+    k.onKeyPress(keys.LEFT, () => {
+      keys.currentHoriz = keys.LEFT;
+      playerHandler.updateAnim(keys.LEFT);
+    });
+    k.onKeyDown(keys.LEFT, () => {
+      if (keys.currentHoriz === keys.LEFT) {
+        if (keys.currentVert !== null) {
+          player.move(-playerHandler.type.speed * keys.speedMult / Math.sqrt(2) * (keys.areBothDown(keys.LEFT) ? 0.5 : 1), 0);
+        } else {
+          player.move(-playerHandler.type.speed * keys.speedMult * (keys.areBothDown(keys.LEFT) ? 0.5 : 1), 0);
+        }
+      }
+    });
+    k.onKeyRelease(keys.LEFT, () => {
+      if (keys.isKeyDown(keys.RIGHT)) {
+        keys.currentHoriz = keys.RIGHT;
+      } else {
+        keys.currentHoriz = null;
+      }
+      playerHandler.updateAnim(keys.LEFT);
+    });
+    k.onKeyPress(keys.UP, () => {
+      keys.currentVert = keys.UP;
+      playerHandler.updateAnim(keys.UP);
+    });
+    k.onKeyDown(keys.UP, () => {
+      if (keys.currentVert === keys.UP) {
+        if (keys.currentHoriz !== null) {
+          player.move(0, -playerHandler.type.speed * keys.speedMult / Math.sqrt(2) * (keys.areBothDown(keys.UP) ? 0.5 : 1));
+        } else {
+          player.move(0, -playerHandler.type.speed * keys.speedMult * (keys.areBothDown(keys.UP) ? 0.5 : 1));
+        }
+      }
+    });
+    k.onKeyRelease(keys.UP, () => {
+      if (keys.isKeyDown(keys.DOWN)) {
+        keys.currentVert = keys.DOWN;
+      } else {
+        keys.currentVert = null;
+      }
+      playerHandler.updateAnim(keys.UP);
+    });
+    k.onKeyPress(keys.DOWN, () => {
+      keys.currentVert = keys.DOWN;
+      playerHandler.updateAnim(keys.DOWN);
+    });
+    k.onKeyDown(keys.DOWN, () => {
+      if (keys.currentVert === keys.DOWN) {
+        if (keys.currentHoriz !== null) {
+          player.move(0, playerHandler.type.speed * keys.speedMult / Math.sqrt(2) * (keys.areBothDown(keys.DOWN) ? 0.5 : 1));
+        } else {
+          player.move(0, playerHandler.type.speed * keys.speedMult * (keys.areBothDown(keys.DOWN) ? 0.5 : 1));
+        }
+      }
+    });
+    k.onKeyRelease(keys.DOWN, () => {
+      if (keys.isKeyDown(keys.UP)) {
+        keys.currentVert = keys.UP;
+      } else {
+        keys.currentVert = null;
+      }
+      playerHandler.updateAnim(keys.DOWN);
+    });
+    k.onKeyPress("shift", () => {
+      if (playerHandler.endRegenEndurance !== null) {
+        playerHandler.endRegenEndurance();
+        playerHandler.endRegenEndurance = null;
+      }
+      if (!(player.endurance === 0)) {
+        playerHandler.endUseEndurance = k.loop(0.125, () => {
+          if (keys.currentHoriz !== null || keys.currentVert !== null) {
+            player.endurance = Math.max(player.endurance - 1, 0);
+            uiHandler.updateEndurance();
+          }
+        });
+        keys.speedMult = PLAYER_RUN_MULT;
+        player.animSpeed = PLAYER_RUN_MULT * playerHandler.type.animSpeed;
+      }
+    });
+    k.onKeyDown("shift", () => {
+      if (player.endurance === 0 && playerHandler.endUseEndurance !== null) {
+        playerHandler.endUseEndurance();
+        playerHandler.endUseEndurance = null;
+        keys.speedMult = 1;
+        player.animSpeed = playerHandler.type.animSpeed;
+      }
+    });
+    k.onKeyRelease("shift", () => {
+      if (playerHandler.endUseEndurance !== null) {
+        playerHandler.endUseEndurance();
+        playerHandler.endUseEndurance = null;
+      }
+      playerHandler.endRegenEndurance = k.loop(0.5, () => {
+        player.endurance = Math.min(player.endurance + 1, playerHandler.type.endurance);
+        uiHandler.updateEndurance();
+      });
+      keys.speedMult = 1;
+      player.animSpeed = playerHandler.type.animSpeed;
+    });
+    player.onHeal(() => {
+      if (player.hp() > playerHandler.type.hp) {
+        player.setHP(playerHandler.type.hp);
+      }
+      uiHandler.updateHearts();
+    });
+    player.onHurt(() => {
+      uiHandler.updateHearts();
+    });
+  }, "setListeners");
+  var initializePlayer = /* @__PURE__ */ __name((type, gameMap) => {
+    createPlayer(type, gameMap.spawnPosition);
+    setListeners(gameMap);
+  }, "initializePlayer");
 
   // code/spriteLoader.js
   var WALK_SPEED = 5;
@@ -2826,12 +3184,14 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "loop": true
     }
   };
-  var spriteFromAtlas = /* @__PURE__ */ __name((x, y) => {
+  var spriteFromAtlas = /* @__PURE__ */ __name((x, y, xSlice, ySlice) => {
     return {
       "x": 16 * x,
       "y": 16 * y,
-      "width": 16,
-      "height": 16
+      "width": 16 * (xSlice != null ? xSlice : 1),
+      "height": 16 * (ySlice != null ? ySlice : 1),
+      "sliceX": xSlice != null ? xSlice : 1,
+      "sliceY": ySlice != null ? ySlice : 1
     };
   }, "spriteFromAtlas");
   var floorSprites = /* @__PURE__ */ __name(() => {
@@ -2854,6 +3214,62 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "floor_rightbotleft": spriteFromAtlas(3, 5)
     };
   }, "floorSprites");
+  var uiSprites = /* @__PURE__ */ __name(() => {
+    return {
+      "heart": {
+        "x": 32,
+        "y": 0,
+        "width": 144,
+        "height": 64,
+        "sliceX": 9,
+        "sliceY": 4,
+        "anims": {
+          "normal4": { "from": 0, "to": 1, "loop": true },
+          "normal3": { "from": 2, "to": 3, "loop": true },
+          "normal2": { "from": 4, "to": 5, "loop": true },
+          "normal1": { "from": 6, "to": 7, "loop": true },
+          "normal0": 8,
+          "poisoned4": { "from": 9, "to": 10, "loop": true },
+          "poisoned3": { "from": 11, "to": 12, "loop": true },
+          "poisoned2": { "from": 13, "to": 14, "loop": true },
+          "poisoned1": { "from": 15, "to": 16, "loop": true },
+          "poisoned0": 17,
+          "frozen4": { "from": 18, "to": 19, "loop": true },
+          "frozen3": { "from": 20, "to": 21, "loop": true },
+          "frozen2": { "from": 22, "to": 23, "loop": true },
+          "frozen1": { "from": 24, "to": 25, "loop": true },
+          "frozen0": 26,
+          "withered4": { "from": 27, "to": 28, "loop": true },
+          "withered3": { "from": 29, "to": 30, "loop": true },
+          "withered2": { "from": 31, "to": 32, "loop": true },
+          "withered1": { "from": 33, "to": 34, "loop": true },
+          "withered0": 35
+        }
+      },
+      "yellow_bar": {
+        "x": 304,
+        "y": 0,
+        "width": 16,
+        "height": 80,
+        "sliceX": 1,
+        "sliceY": 5
+      },
+      "bar_frame": {
+        "x": 176,
+        "y": 0,
+        "width": 32,
+        "height": 64,
+        "sliceX": 2,
+        "sliceY": 4,
+        "anims": {
+          "left": { "from": 0, "to": 1, "loop": true },
+          "mid": { "from": 2, "to": 3, "loop": true },
+          "right": { "from": 4, "to": 5, "loop": true },
+          "small": { "from": 6, "to": 7, "loop": true }
+        }
+      }
+    };
+  }, "uiSprites");
   var wallSprites = /* @__PURE__ */ __name(() => {
     return {
       "wall_corner_topleft": spriteFromAtlas(0, 3),
@@ -2880,159 +3296,17 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     "loadPlayer": (name) => {
       k.loadSprite(name, `/sprites/Players/${name}.png`, playerOptions);
     },
-    "addPlayer": (name, pos) => {
-      return k.add([
-        k.sprite(name),
-        k.origin("center"),
-        k.layer("game"),
-        k.pos(pos),
-        k.area(),
-        k.solid(),
-        k.z(2),
-        "player",
-        "killable"
-      ]);
+    "addPlayer": (pos2) => {
+      return k.add(addPlayerOpts(pos2));
     },
     "loadArchit": () => {
-      k.loadSpriteAtlas("/sprites/Objects/Floor.png", floorSprites());
-      k.loadSpriteAtlas("/sprites/Objects/Wall.png", wallSprites());
-    }
-  };
-
-  // code/player.js
-  var PLAYER_SPEED = 60;
-  var player_default = player = null;
-  var createPlayer = /* @__PURE__ */ __name((name, pos) => {
-    loader.loadPlayer(name);
-    if (player !== null)
-      k.destroy(player);
-    player = loader.addPlayer(name, pos);
-  }, "createPlayer");
-  var keys = {
-    RIGHT: ["right", "d"],
-    LEFT: ["left", "a"],
-    UP: ["up", "w"],
-    DOWN: ["down", "s"],
-    currentHoriz: null,
-    currentVert: null,
-    isKeyDown: (key) => {
-      return k.isKeyDown(key[0]) || k.isKeyDown(key[1]);
-    }
-  };
-  var playerAnimHandler = {
-    anim: (key, walk) => {
-      return key[0] + "_" + (walk ? "walk" : "idle");
+      k.loadSpriteAtlas("/sprites/Structure/Floor.png", floorSprites());
+      k.loadSpriteAtlas("/sprites/Structure/Wall.png", wallSprites());
     },
-    setAnim: (anim) => {
-      if (player.curAnim() !== anim) {
-        player.play(anim);
-      }
-    },
-    updateAnim: (last) => {
-      if (keys.currentHoriz === null) {
-        if (keys.currentVert === null) {
-          playerAnimHandler.setAnim(playerAnimHandler.anim(last, false));
-        } else {
-          playerAnimHandler.setAnim(playerAnimHandler.anim(keys.currentVert, true));
-        }
-      } else {
-        playerAnimHandler.setAnim(playerAnimHandler.anim(keys.currentHoriz, true));
-      }
+    "loadUI": () => {
+      k.loadSpriteAtlas("/sprites/UI.png", uiSprites());
     }
   };
-  var setListeners = /* @__PURE__ */ __name((gameMap) => {
-    player.onUpdate(() => {
-      k.camPos(player.pos);
-    });
-    k.onKeyPress(keys.RIGHT, () => {
-      keys.currentHoriz = keys.RIGHT;
-      playerAnimHandler.updateAnim(keys.RIGHT);
-    });
-    k.onKeyDown(keys.RIGHT, () => {
-      if (keys.currentHoriz === keys.RIGHT) {
-        if (keys.currentVert !== null) {
-          player.move(PLAYER_SPEED / Math.sqrt(2), 0);
-        } else {
-          player.move(PLAYER_SPEED, 0);
-        }
-      }
-    });
-    k.onKeyRelease(keys.RIGHT, () => {
-      if (keys.isKeyDown(keys.LEFT)) {
-        keys.currentHoriz = keys.LEFT;
-      } else {
-        keys.currentHoriz = null;
-      }
-      playerAnimHandler.updateAnim(keys.RIGHT);
-    });
-    k.onKeyPress(keys.LEFT, () => {
-      keys.currentHoriz = keys.LEFT;
-      playerAnimHandler.updateAnim(keys.LEFT);
-    });
-    k.onKeyDown(keys.LEFT, () => {
-      if (keys.currentHoriz === keys.LEFT) {
-        if (keys.currentVert !== null) {
-          player.move(-PLAYER_SPEED / Math.sqrt(2), 0);
-        } else {
-          player.move(-PLAYER_SPEED, 0);
-        }
-      }
-    });
-    k.onKeyRelease(keys.LEFT, () => {
-      if (keys.isKeyDown(keys.RIGHT)) {
-        keys.currentHoriz = keys.RIGHT;
-      } else {
-        keys.currentHoriz = null;
-      }
-      playerAnimHandler.updateAnim(keys.LEFT);
-    });
-    k.onKeyPress(keys.UP, () => {
-      keys.currentVert = keys.UP;
-      playerAnimHandler.updateAnim(keys.UP);
-    });
-    k.onKeyDown(keys.UP, () => {
-      if (keys.currentVert === keys.UP) {
-        if (keys.currentHoriz !== null) {
-          player.move(0, -PLAYER_SPEED / Math.sqrt(2));
-        } else {
-          player.move(0, -PLAYER_SPEED);
-        }
-      }
-    });
-    k.onKeyRelease(keys.UP, () => {
-      if (keys.isKeyDown(keys.DOWN)) {
-        keys.currentVert = keys.DOWN;
-      } else {
-        keys.currentVert = null;
-      }
-      playerAnimHandler.updateAnim(keys.UP);
-    });
-    k.onKeyPress(keys.DOWN, () => {
-      keys.currentVert = keys.DOWN;
-      playerAnimHandler.updateAnim(keys.DOWN);
-    });
-    k.onKeyDown(keys.DOWN, () => {
-      if (keys.currentVert === keys.DOWN) {
-        if (keys.currentHoriz !== null) {
-          player.move(0, PLAYER_SPEED / Math.sqrt(2));
-        } else {
-          player.move(0, PLAYER_SPEED);
-        }
-      }
-    });
-    k.onKeyRelease(keys.DOWN, () => {
-      if (keys.isKeyDown(keys.UP)) {
-        keys.currentVert = keys.UP;
-      } else {
-        keys.currentVert = null;
-      }
-      playerAnimHandler.updateAnim(keys.DOWN);
-    });
-  }, "setListeners");
-  var initializePlayer = /* @__PURE__ */ __name((name, gameMap) => {
-    createPlayer(name, gameMap.spawnPosition);
-    setListeners(gameMap);
-  }, "initializePlayer");
 
   // code/maps/legend.js
   var legend = /* @__PURE__ */ __name((gameMap) => {
@@ -3130,6 +3404,17 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   addLayers();
   loader.loadArchit();
   var map = new GameMap(testmap);
-  initializePlayer("Engineer", map);
+  initializePlayer(types.Mage, map);
+  createUI();
+  k.onKeyPress("q", () => {
+    player.hurt();
+  });
+  k.onKeyPress("e", () => {
+    player.heal();
+  });
+  k.onKeyPress("r", () => {
+    player.modifier = (player.modifier + 1) % 4;
+    uiHandler.updateHearts();
+  });
 })();
 //# sourceMappingURL=game.js.map

@@ -1,4 +1,5 @@
 import { k } from "./kaboom";
+import { MODS, addPlayerOpts } from "./player";
 
 const WALK_SPEED = 5;
 
@@ -45,12 +46,14 @@ const playerAnims = {
     },
 };
 
-const spriteFromAtlas = (x, y) => {
+const spriteFromAtlas = (x, y, xSlice, ySlice) => {
     return {
         "x": 16 * x,
         "y": 16 * y,
-        "width": 16,
-        "height": 16,
+        "width": 16 * (xSlice ?? 1),
+        "height": 16 * (ySlice ?? 1),
+        "sliceX": (xSlice ?? 1),
+        "sliceY": (ySlice ?? 1),
     };
 };
 
@@ -72,6 +75,63 @@ const floorSprites = () => {
         "floor_bot": spriteFromAtlas(1, 5),
         "floor_rightbot": spriteFromAtlas(2, 5),
         "floor_rightbotleft": spriteFromAtlas(3, 5),
+    };
+};
+
+const uiSprites = () => {
+    return {
+        "heart": {
+            "x": 32,
+            "y": 0,
+            "width": 144,
+            "height": 64,
+            "sliceX": 9,
+            "sliceY": 4,
+            "anims": {
+                "normal4": { "from": 0, "to": 1, "loop": true },
+                "normal3": { "from": 2, "to": 3, "loop": true },
+                "normal2": { "from": 4, "to": 5, "loop": true },
+                "normal1": { "from": 6, "to": 7, "loop": true },
+                "normal0": 8,
+                "poisoned4": { "from": 9, "to": 10, "loop": true },
+                "poisoned3": { "from": 11, "to": 12, "loop": true },
+                "poisoned2": { "from": 13, "to": 14, "loop": true },
+                "poisoned1": { "from": 15, "to": 16, "loop": true },
+                "poisoned0": 17,
+                "frozen4": { "from": 18, "to": 19, "loop": true },
+                "frozen3": { "from": 20, "to": 21, "loop": true },
+                "frozen2": { "from": 22, "to": 23, "loop": true },
+                "frozen1": { "from": 24, "to": 25, "loop": true },
+                "frozen0": 26,
+                "withered4": { "from": 27, "to": 28, "loop": true },
+                "withered3": { "from": 29, "to": 30, "loop": true },
+                "withered2": { "from": 31, "to": 32, "loop": true },
+                "withered1": { "from": 33, "to": 34, "loop": true },
+                "withered0": 35,
+            },
+        },
+        "yellow_bar": {
+            "x": 304,
+            "y": 0,
+            "width": 16,
+            "height": 80,
+            "sliceX": 1,
+            "sliceY": 5,
+        },
+        "bar_frame": {
+            "x": 176,
+            "y": 0,
+            "width": 32,
+            "height": 64,
+            "sliceX": 2,
+            "sliceY": 4,
+            "anims": {
+                "left": { "from": 0, "to": 1, "loop": true },
+                "mid": { "from": 2, "to": 3, "loop": true },
+                "right": { "from": 4, "to": 5, "loop": true },
+                "small": { "from": 6, "to": 7, "loop": true },
+            },
+        },
     };
 };
 
@@ -103,26 +163,16 @@ export const loader = {
     "loadPlayer": (name) => {
         k.loadSprite(name, `/sprites/Players/${name}.png`, playerOptions);
     },
-    "addPlayer": (name, pos) => {
-        return k.add([
-            k.sprite(name),
-            k.origin("center"),
-            k.layer("game"),
-            k.pos(pos),
-            k.area(),
-            k.solid(),
-            k.z(2),
-            "player",
-            "killable",
-        ]);
+    "addPlayer": (pos) => {
+        return k.add(addPlayerOpts(pos));
     },
     "loadArchit": () => {
-        k.loadSpriteAtlas("/sprites/Objects/Floor.png", floorSprites());
-        k.loadSpriteAtlas("/sprites/Objects/Wall.png", wallSprites());
+        k.loadSpriteAtlas("/sprites/Structure/Floor.png", floorSprites());
+        k.loadSpriteAtlas("/sprites/Structure/Wall.png", wallSprites());
     },
 
-    "loadGUI": () => {
-        //
+    "loadUI": () => {
+        k.loadSpriteAtlas("/sprites/UI.png", uiSprites());
     },
 };
 
